@@ -27,30 +27,40 @@ Three founder-agents baked in. Each one is built from deep research, public talk
 
 **Bring your own agent.** Drop a markdown file at `~/.arena/personas/<slug>.md` with a frontmatter header and a profile body. Pitch to your CEO, your most ruthless advisor, or the partner you're about to walk into a room with. `arena list` picks it up automatically.
 
-## Install, pick your surface
+## Install, use the plan you already pay for
 
-### In Claude Code (no terminal)
+arena runs against whichever AI subscription you already have. Pick the path that matches the app you use:
 
-Open the Claude Code desktop app on Mac, Windows, or Linux. Type three commands directly in the chat:
+### In Claude Code
+
+Inside a Claude Code session (Mac, Windows, or Linux desktop app), type:
 
 ```
 /plugin marketplace add getpeid/the-arena
-/plugin                       (opens the GUI, click "arena", choose Install)
-/reload-plugins
+/plugin
 ```
 
-You're done. From any conversation:
+The Discover tab opens. Click **arena**, choose Install, then `/reload-plugins`. From any chat: `/arena pitch doug ./pitch.md`, or just say *"Have Doug react to this pitch."* Inference comes from your Claude Pro/Max plan, no API key needed.
 
-```
-/arena pitch doug ./pitch.md
-/arena panel doug,masa,travis ./pitch.md
+### In Claude Desktop
+
+One line in your terminal, then back to the app:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/getpeid/the-arena/main/install-mcp.sh | bash
 ```
 
-Or just describe it in plain English: *"Have Doug react to my pitch at ./pitch.md."* Claude Code's own session does the inference, billed against the plan you already have.
+Restart Claude Desktop. From any conversation, ask in plain English:
+
+> *"Have Doug Leone react to my pitch at ./pitch.md."*
+> *"Run a panel of Doug, Masa, and Travis on this strategy doc."*
+> *"What would Masa say about this growth plan?"*
+
+The script registers arena as an MCP server. Inference comes from your Claude Pro/Max plan, no API key needed.
 
 ### As a terminal CLI
 
-If you want to use arena outside Claude Code:
+If you want arena outside of either Claude app:
 
 ```bash
 npm install -g the-arena
@@ -59,30 +69,13 @@ arena pitch doug ./pitch.md
 
 `arena` auto-shells to whichever AI CLI you've logged in to: `claude -p` (Claude Pro/Max plan) or `codex exec` (ChatGPT plan). Falls back to `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` for direct API billing. Chinese model users: set `OPENAI_BASE_URL` to point at Doubao, Kimi, DeepSeek, Qwen, or any OpenAI-compatible endpoint. See [Runners](#runners) below.
 
-### As an MCP server (Claude Desktop, Cursor, any MCP host)
-
-Add to your host's MCP config (Claude Desktop: `~/Library/Application Support/Claude/claude_desktop_config.json`):
-
-```json
-{
-  "mcpServers": {
-    "arena": {
-      "command": "npx",
-      "args": ["-y", "the-arena", "arena-mcp"]
-    }
-  }
-}
-```
-
-Restart the host. The `pitch`, `panel`, `list_personas`, and `show_persona` tools become callable. The host's own session pays for inference.
-
 ### Via ClawHub (for OpenClaw users)
 
 ```bash
 clawhub install arena
 ```
 
-Then pitch from any channel OpenClaw supports: WhatsApp, Lark, WeChat, etc.
+Then pitch from any channel your OpenClaw supports: WhatsApp, Lark, WeChat, etc.
 
 ## Runners
 

@@ -1,5 +1,9 @@
 {
   "name": "the-arena",
+  "owner": {
+    "name": "Carl Pei",
+    "url": "https://github.com/getpeid"
+  },
   "description": "Founder-agent personas for pitch review",
   "plugins": [
     {

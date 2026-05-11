@@ -1,19 +1,31 @@
 # the-arena
 
-Pitch your idea to founder personas. Solo, or as a panel debate.
+**Agentic pitch review.** A panel of legendary-investor agents in your terminal.
 
 ```bash
 arena pitch doug ./pitch.md                # 1-on-1 with Doug Leone
-arena panel doug,masa,travis ./pitch.md    # 3-way debate, 2 rounds + verdicts
+arena panel doug,masa,travis ./pitch.md    # all three at once — they argue
 ```
 
-Three personas baked in:
+Three founder-agents baked in. Each one is built from deep research — public talks, podcasts, partner letters, on-stage interviews — and holds its own worldview, asks its own questions, and delivers a verdict in its own native shape.
 
-- **Doug Leone** (Sequoia) — markets-first, demands unit economics and named customer segments, grades on a letter scale.
-- **Masayoshi Son** (SoftBank) — visionary, 300-year arcs, tells you to add a zero, decides in 6 minutes.
-- **Travis Kalanick** (Atoms / ex-Uber) — operator-builder, Atoms-era stealth contrarian, the derivative test, "I never left."
+> **Doug Leone** · *Sequoia*
+> *"Where's the unit economics? Who specifically is buying this?"*
+> Markets-first. Demands a named buyer, a real moat, structural switching costs. Grades on a letter scale and tracks improvement across rounds.
 
-Bring your own by dropping a markdown file with frontmatter into `~/.arena/personas/`.
+> **Masayoshi Son** · *SoftBank*
+> *"I look for shining eyes. If I need more than ten minutes, the answer is no."*
+> Decides fast, thinks in 300-year arcs, tells you to add a zero. Asks one question: "Can this be #1?"
+
+> **Travis Kalanick** · *Atoms (ex-Uber)*
+> *"Specialized, not humanoid. Fear is the disease. Hustle is the antidote."*
+> Operator-builder. Applies the derivative test. Won't capitulate to be polite. Tells you what to ship this week, not next quarter.
+
+**Panel mode is the differentiator.** Doug demands the unit economics, Masa pushes you to add a zero, Travis tells you to ship before the math is clean. They engage with each other — agree, disagree, push back — and each delivers a verdict in their own native shape (Doug's letter grade, Masa's yes / no / 10x, Travis's Y/N + derivative test). The conflict between worldviews is what you came for.
+
+**No API key required.** `arena` auto-shells to `claude -p` or `codex exec`, so tokens come out of your Claude Pro/Max or ChatGPT plan — not a separate API budget.
+
+**Bring your own agent.** Drop a markdown file at `~/.arena/personas/<slug>.md` with a frontmatter header and a profile body. Pitch to your CEO, your most ruthless advisor, or the partner you're about to walk into a room with. `arena list` picks it up automatically.
 
 ## Install — pick your surface
 

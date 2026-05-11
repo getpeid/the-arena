@@ -5,7 +5,7 @@
 #   curl -fsSL https://raw.githubusercontent.com/getpeid/the-arena/main/install-skill.sh | bash
 #
 # What it does: clones the repo to ~/.arena/the-arena (or pulls latest),
-# then symlinks adapters/skill into ~/.claude/skills/arena.
+# then symlinks skills/arena into ~/.claude/skills/arena.
 # After this, `/arena pitch <persona> <doc>` works in Claude Code.
 
 set -euo pipefail
@@ -36,8 +36,8 @@ if [ -L "$SKILL_LINK" ] || [ -e "$SKILL_LINK" ]; then
   rm -rf "$SKILL_LINK"
 fi
 
-ln -s "$ARENA_DIR/adapters/skill" "$SKILL_LINK"
-echo "[arena] symlinked $SKILL_LINK → $ARENA_DIR/adapters/skill"
+ln -s "$ARENA_DIR/skills/arena" "$SKILL_LINK"
+echo "[arena] symlinked $SKILL_LINK → $ARENA_DIR/skills/arena"
 
 cat <<'DONE'
 

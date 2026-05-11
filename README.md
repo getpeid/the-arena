@@ -29,31 +29,39 @@ Three founder-agents baked in. Each one is built from deep research, public talk
 
 ## Install, pick your surface
 
+### In Claude Code (no terminal)
+
+Open the Claude Code desktop app on Mac, Windows, or Linux. Type three commands directly in the chat:
+
+```
+/plugin marketplace add getpeid/the-arena
+/plugin                       (opens the GUI, click "arena", choose Install)
+/reload-plugins
+```
+
+You're done. From any conversation:
+
+```
+/arena pitch doug ./pitch.md
+/arena panel doug,masa,travis ./pitch.md
+```
+
+Or just describe it in plain English: *"Have Doug react to my pitch at ./pitch.md."* Claude Code's own session does the inference, billed against the plan you already have.
+
 ### As a terminal CLI
+
+If you want to use arena outside Claude Code:
 
 ```bash
 npm install -g the-arena
-```
-
-Then anywhere:
-
-```bash
 arena pitch doug ./pitch.md
 ```
 
-By default `arena` shells out to whichever AI CLI you've logged in to: `claude -p` (Claude Pro/Max plan) or `codex exec` (ChatGPT plan). Falls back to `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` for direct API billing. Chinese model users: set `OPENAI_BASE_URL` to point at Doubao, Kimi, DeepSeek, Qwen, or any OpenAI-compatible endpoint. See [Runners](#runners) below.
+`arena` auto-shells to whichever AI CLI you've logged in to: `claude -p` (Claude Pro/Max plan) or `codex exec` (ChatGPT plan). Falls back to `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` for direct API billing. Chinese model users: set `OPENAI_BASE_URL` to point at Doubao, Kimi, DeepSeek, Qwen, or any OpenAI-compatible endpoint. See [Runners](#runners) below.
 
-### As a Claude Code skill
+### As an MCP server (Claude Desktop, Cursor, any MCP host)
 
-```bash
-curl -fsSL https://raw.githubusercontent.com/getpeid/the-arena/main/install-skill.sh | bash
-```
-
-Then in Claude Code: `/arena pitch doug ./pitch.md`, or just ask in natural language ("have Doug react to this pitch"). Claude Code's own session does the inference; nothing to configure.
-
-### As an MCP server
-
-Add to your MCP host config (Claude Desktop: `~/Library/Application Support/Claude/claude_desktop_config.json`):
+Add to your host's MCP config (Claude Desktop: `~/Library/Application Support/Claude/claude_desktop_config.json`):
 
 ```json
 {
@@ -68,11 +76,13 @@ Add to your MCP host config (Claude Desktop: `~/Library/Application Support/Clau
 
 Restart the host. The `pitch`, `panel`, `list_personas`, and `show_persona` tools become callable. The host's own session pays for inference.
 
-### Via ClawHub (OpenClaw)
+### Via ClawHub (for OpenClaw users)
 
 ```bash
 clawhub install arena
 ```
+
+Then pitch from any channel OpenClaw supports: WhatsApp, Lark, WeChat, etc.
 
 ## Runners
 

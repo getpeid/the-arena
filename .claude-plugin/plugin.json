@@ -1,0 +1,12 @@
+{
+  "name": "arena",
+  "description": "Agentic pitch review. A panel of legendary-investor agents (Doug Leone, Masa Son, Travis Kalanick) stress-tests your idea solo or as a multi-round debate.",
+  "version": "0.1.0-alpha.0",
+  "author": {
+    "name": "Carl Pei"
+  },
+  "homepage": "https://github.com/getpeid/the-arena",
+  "repository": "https://github.com/getpeid/the-arena",
+  "license": "MIT",
+  "keywords": ["pitch", "founders", "agents", "panel", "investor", "feedback"]
+}

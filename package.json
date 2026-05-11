@@ -11,7 +11,7 @@
     "arena": "tsx adapters/cli/index.ts",
     "mcp": "tsx adapters/mcp/server.ts",
     "typecheck": "tsc --noEmit",
-    "sync-skill-personas": "rm -rf adapters/skill/personas && cp -r core/personas adapters/skill/personas",
+    "sync-skill-personas": "rm -rf skills/arena/personas && cp -r core/personas skills/arena/personas",
     "prepublishOnly": "npm run sync-skill-personas && npm run typecheck"
   },
   "keywords": [
@@ -28,7 +28,7 @@
     "anthropic"
   ],
   "license": "MIT",
-  "author": "Carl Pei <***@***>",
+  "author": "Carl Pei",
   "homepage": "https://github.com/getpeid/the-arena#readme",
   "repository": {
     "type": "git",
@@ -38,6 +38,8 @@
     "url": "https://github.com/getpeid/the-arena/issues"
   },
   "files": [
+    ".claude-plugin/",
+    "skills/",
     "bin/",
     "core/",
     "adapters/",

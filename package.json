@@ -1,0 +1,62 @@
+{
+  "name": "the-arena",
+  "version": "0.1.0-alpha.0",
+  "description": "Pitch your idea to founder personas in the terminal — solo or as a panel debate. Doug Leone, Masayoshi Son, Travis Kalanick baked in. Bring your own.",
+  "type": "module",
+  "bin": {
+    "arena": "./bin/arena.js",
+    "arena-mcp": "./bin/arena-mcp.js"
+  },
+  "scripts": {
+    "arena": "tsx adapters/cli/index.ts",
+    "mcp": "tsx adapters/mcp/server.ts",
+    "typecheck": "tsc --noEmit",
+    "sync-skill-personas": "rm -rf adapters/skill/personas && cp -r core/personas adapters/skill/personas",
+    "prepublishOnly": "npm run sync-skill-personas && npm run typecheck"
+  },
+  "keywords": [
+    "cli",
+    "pitch",
+    "founders",
+    "ai",
+    "personas",
+    "claude",
+    "openai",
+    "openclaw",
+    "venture-capital",
+    "founder-feedback",
+    "anthropic"
+  ],
+  "license": "MIT",
+  "author": "Carl Pei <***@***>",
+  "homepage": "https://github.com/getpeid/the-arena#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getpeid/the-arena.git"
+  },
+  "bugs": {
+    "url": "https://github.com/getpeid/the-arena/issues"
+  },
+  "files": [
+    "bin/",
+    "core/",
+    "adapters/",
+    "tools/",
+    "tsconfig.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "openai": "^4.70.0",
+    "tsx": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -11,7 +11,7 @@
     "arena": "tsx adapters/cli/index.ts",
     "mcp": "tsx adapters/mcp/server.ts",
     "typecheck": "tsc --noEmit",
-    "sync-skill-personas": "rm -rf skills/arena/personas && cp -r core/personas skills/arena/personas",
+    "sync-skill-personas": "rm -rf plugins/arena/skills/arena/personas && cp -r core/personas plugins/arena/skills/arena/personas",
     "prepublishOnly": "npm run sync-skill-personas && npm run typecheck"
   },
   "keywords": [
@@ -39,7 +39,7 @@
   },
   "files": [
     ".claude-plugin/",
-    "skills/",
+    "plugins/",
     "bin/",
     "core/",
     "adapters/",

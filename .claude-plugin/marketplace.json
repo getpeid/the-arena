@@ -9,7 +9,7 @@
     {
       "name": "arena",
       "description": "Agentic pitch review with Doug Leone, Masa Son, Travis Kalanick. Solo or panel debate.",
-      "source": "."
+      "source": "./plugins/arena"
     }
   ]
 }

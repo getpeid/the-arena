@@ -16,7 +16,7 @@ export class ClaudeCodeRunner implements Runner {
       args.push("--system-prompt", opts.system);
     }
 
-    // Disable all tools so the persona is pure model inference — no file reads,
+    // Disable all tools so the persona is pure model inference, no file reads,
     // no bash, no skills. We deliberately do NOT use --bare here: --bare disables
     // OAuth/keychain auth and forces ANTHROPIC_API_KEY, defeating the whole point
     // of using the user's plan.
@@ -52,7 +52,7 @@ export class ClaudeCodeRunner implements Runner {
       proc.stderr.on("data", (d) => (stderr += d.toString()));
       proc.on("error", reject);
       proc.on("close", (code) => {
-        // Try to parse JSON regardless of exit code — claude returns structured
+        // Try to parse JSON regardless of exit code, claude returns structured
         // errors (auth, rate-limit) as is_error:true with a useful `result` string.
         let json: any = null;
         try {
@@ -125,7 +125,7 @@ export class ClaudeCodeRunner implements Runner {
             fullText = event.result;
           }
         } catch {
-          // Non-JSON line — ignore.
+          // Non-JSON line, ignore.
         }
       }
     }

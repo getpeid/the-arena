@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install-skill.sh — install the arena Claude Code skill in one command.
+# install-skill.sh, install the arena Claude Code skill in one command.
 #
 # Run via:
 #   curl -fsSL https://raw.githubusercontent.com/getpeid/the-arena/main/install-skill.sh | bash
@@ -32,7 +32,7 @@ else
 fi
 
 if [ -L "$SKILL_LINK" ] || [ -e "$SKILL_LINK" ]; then
-  echo "[arena] $SKILL_LINK already exists — removing"
+  echo "[arena] $SKILL_LINK already exists, removing"
   rm -rf "$SKILL_LINK"
 fi
 

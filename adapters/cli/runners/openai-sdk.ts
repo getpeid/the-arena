@@ -10,7 +10,11 @@ export class OpenAISDKRunner implements Runner {
   private client: OpenAI;
 
   constructor() {
-    this.client = new OpenAI();
+    // OPENAI_BASE_URL lets users point at any OpenAI-compatible endpoint:
+    // Doubao, Kimi (Moonshot), DeepSeek, Qwen, GLM (ZhipuAI), Yi, Mistral,
+    // Groq, Together, self-hosted vLLM, etc. OPENAI_API_KEY is still required.
+    const baseURL = process.env.OPENAI_BASE_URL ?? process.env.OPENAI_API_BASE;
+    this.client = new OpenAI(baseURL ? { baseURL } : {});
   }
 
   private buildMessages(opts: InferOpts) {

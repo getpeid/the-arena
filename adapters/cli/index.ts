@@ -35,7 +35,7 @@ function parseArgs(argv: string[]): ParsedArgs {
   return { positional, flags };
 }
 
-const HELP = `arena — pitch your idea to founder personas
+const HELP = `arena, pitch your idea to founder personas
 
 Usage:
   arena list                                  show available personas
@@ -58,8 +58,8 @@ Flags:
   --runner <name>     pin to one of the four runners above
   --model <name>      override model (e.g. claude-opus-4-7, gpt-5.5)
   --max-tokens <n>    cap output tokens
-  --rounds <n>        panel only — engagement rounds (default 2)
-  --once              pitch only — non-interactive single reply
+  --rounds <n>        panel only, engagement rounds (default 2)
+  --once              pitch only, non-interactive single reply
   --no-stream         disable streaming output
 
 Slash commands inside a pitch REPL:

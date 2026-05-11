@@ -1,7 +1,7 @@
 {
   "name": "the-arena",
   "version": "0.1.0-alpha.0",
-  "description": "Agentic pitch review in your terminal. A panel of founder-agents — Doug Leone, Masa Son, Travis Kalanick — stress-tests your idea solo or as a multi-round debate. Bring your own agent.",
+  "description": "Agentic pitch review in your terminal. A panel of founder-agents, Doug Leone, Masa Son, Travis Kalanick, stress-tests your idea solo or as a multi-round debate. Bring your own agent.",
   "type": "module",
   "bin": {
     "arena": "./bin/arena.js",

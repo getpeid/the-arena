@@ -60,7 +60,7 @@ async function readPersonaFile(path: string, source: "builtin" | "user"): Promis
     try {
       portrait = (await readFile(portraitPath, "utf8")).replace(/\n+$/, "");
     } catch {
-      // Portrait file missing — non-fatal, persona still loads without it.
+      // Portrait file missing, non-fatal, persona still loads without it.
     }
   }
 

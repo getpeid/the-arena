@@ -4,10 +4,10 @@
 
 ```bash
 arena pitch doug ./pitch.md                # 1-on-1 with Doug Leone
-arena panel doug,masa,travis ./pitch.md    # all three at once — they argue
+arena panel doug,masa,travis ./pitch.md    # all three at once, they argue
 ```
 
-Three founder-agents baked in. Each one is built from deep research — public talks, podcasts, partner letters, on-stage interviews — and holds its own worldview, asks its own questions, and delivers a verdict in its own native shape.
+Three founder-agents baked in. Each one is built from deep research, public talks, podcasts, partner letters, on-stage interviews, and holds its own worldview, asks its own questions, and delivers a verdict in its own native shape.
 
 > **Doug Leone** · *Sequoia*
 > *"Where's the unit economics? Who specifically is buying this?"*
@@ -21,13 +21,13 @@ Three founder-agents baked in. Each one is built from deep research — public t
 > *"Specialized, not humanoid. Fear is the disease. Hustle is the antidote."*
 > Operator-builder. Applies the derivative test. Won't capitulate to be polite. Tells you what to ship this week, not next quarter.
 
-**Panel mode is the differentiator.** Doug demands the unit economics, Masa pushes you to add a zero, Travis tells you to ship before the math is clean. They engage with each other — agree, disagree, push back — and each delivers a verdict in their own native shape (Doug's letter grade, Masa's yes / no / 10x, Travis's Y/N + derivative test). The conflict between worldviews is what you came for.
+**Panel mode is the differentiator.** Doug demands the unit economics, Masa pushes you to add a zero, Travis tells you to ship before the math is clean. They engage with each other, agree, disagree, push back, and each delivers a verdict in their own native shape (Doug's letter grade, Masa's yes / no / 10x, Travis's Y/N + derivative test). The conflict between worldviews is what you came for.
 
-**No API key required.** `arena` auto-shells to `claude -p` or `codex exec`, so tokens come out of your Claude Pro/Max or ChatGPT plan — not a separate API budget.
+**Bring your own plan.** `arena` auto-shells to whichever AI CLI you have logged in: `claude -p` for Claude Pro/Max, or `codex exec` for ChatGPT Plus/Pro. Tokens come out of the subscription you already pay for, not a separate API budget. Or set `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` for direct API billing. Chinese model plans (Doubao, Kimi, DeepSeek, Qwen, GLM) work too via `OPENAI_BASE_URL`.
 
 **Bring your own agent.** Drop a markdown file at `~/.arena/personas/<slug>.md` with a frontmatter header and a profile body. Pitch to your CEO, your most ruthless advisor, or the partner you're about to walk into a room with. `arena list` picks it up automatically.
 
-## Install — pick your surface
+## Install, pick your surface
 
 ### As a terminal CLI
 
@@ -41,7 +41,7 @@ Then anywhere:
 arena pitch doug ./pitch.md
 ```
 
-By default `arena` shells out to `claude -p` (your Claude Pro/Max plan) — no API key needed. It auto-detects `claude`, `codex`, or `ANTHROPIC_API_KEY` / `OPENAI_API_KEY`. See [Runners](#runners) below.
+By default `arena` shells out to whichever AI CLI you've logged in to: `claude -p` (Claude Pro/Max plan) or `codex exec` (ChatGPT plan). Falls back to `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` for direct API billing. Chinese model users: set `OPENAI_BASE_URL` to point at Doubao, Kimi, DeepSeek, Qwen, or any OpenAI-compatible endpoint. See [Runners](#runners) below.
 
 ### As a Claude Code skill
 
@@ -49,7 +49,7 @@ By default `arena` shells out to `claude -p` (your Claude Pro/Max plan) — no A
 curl -fsSL https://raw.githubusercontent.com/getpeid/the-arena/main/install-skill.sh | bash
 ```
 
-Then in Claude Code: `/arena pitch doug ./pitch.md` — or just ask in natural language ("have Doug react to this pitch"). Claude Code's own session does the inference; nothing to configure.
+Then in Claude Code: `/arena pitch doug ./pitch.md`, or just ask in natural language ("have Doug react to this pitch"). Claude Code's own session does the inference; nothing to configure.
 
 ### As an MCP server
 
@@ -80,12 +80,36 @@ clawhub install arena
 
 `arena` doesn't require an API key. It auto-detects an LLM runner you already pay for:
 
-| Runner          | How it works                                             | Billing                  |
-| --------------- | -------------------------------------------------------- | ------------------------ |
-| `claude`        | Shells out to `claude -p` (Claude Code).                 | Your Claude Pro/Max plan |
-| `codex`         | Shells out to `codex exec` (OpenAI Codex CLI).           | Your ChatGPT plan        |
-| `anthropic-sdk` | Direct Anthropic API call.                               | `ANTHROPIC_API_KEY`      |
-| `openai-sdk`    | Direct OpenAI API call.                                  | `OPENAI_API_KEY`         |
+| Runner          | How it works                                                            | Billing                                          |
+| --------------- | ----------------------------------------------------------------------- | ------------------------------------------------ |
+| `claude`        | Shells out to `claude -p` (Claude Code CLI).                            | Your Claude Pro/Max plan                         |
+| `codex`         | Shells out to `codex exec` (OpenAI Codex CLI).                          | Your ChatGPT Plus/Pro plan                       |
+| `anthropic-sdk` | Direct Anthropic API call.                                              | `ANTHROPIC_API_KEY`                              |
+| `openai-sdk`    | Direct OpenAI API call. Honors `OPENAI_BASE_URL` for any OAI-compat API. | `OPENAI_API_KEY` (any provider that accepts it)  |
+
+### Using a Chinese model plan (or any OpenAI-compatible API)
+
+The `openai-sdk` runner respects `OPENAI_BASE_URL`. Point it at any OpenAI-compatible endpoint and use that provider's API key as `OPENAI_API_KEY`:
+
+```bash
+# Doubao (ByteDance)
+export OPENAI_BASE_URL=https://ark.cn-beijing.volces.com/api/v3
+export OPENAI_API_KEY=<your doubao key>
+arena pitch doug ./pitch.md --runner openai-sdk --model doubao-pro-128k
+
+# Kimi (Moonshot AI)
+export OPENAI_BASE_URL=https://api.moonshot.cn/v1
+export OPENAI_API_KEY=<your kimi key>
+arena pitch doug ./pitch.md --runner openai-sdk --model kimi-k2-0905-preview
+
+# DeepSeek
+export OPENAI_BASE_URL=https://api.deepseek.com
+export OPENAI_API_KEY=<your deepseek key>
+arena pitch doug ./pitch.md --runner openai-sdk --model deepseek-chat
+
+# Qwen (Alibaba), GLM (Zhipu), Yi (01.AI), Mistral, Groq, Together, self-hosted vLLM ...
+# Same pattern: set OPENAI_BASE_URL + OPENAI_API_KEY + --model.
+```
 
 **Resolution order** (first match wins):
 
@@ -94,7 +118,7 @@ clawhub install arena
 3. `runner` field in `~/.arena/config.json`
 4. Auto-detect: `claude` installed → `ANTHROPIC_API_KEY` → `codex` installed → `OPENAI_API_KEY`
 
-If you have Claude Code installed and logged in (`claude login`), `arena pitch doug ./pitch.md` Just Works — no API key, billed against your plan.
+If you have Claude Code installed and logged in (`claude login`), `arena pitch doug ./pitch.md` Just Works, no API key, billed against your plan.
 
 ## Install
 
@@ -187,7 +211,7 @@ ln -s /path/to/the-arena/adapters/skill ~/.claude/skills/arena
 
 Then in Claude Code: `/arena pitch doug ./pitch.md` or `/arena panel doug,masa,travis ./pitch.md`.
 
-The skill is self-contained — its `personas/` directory is synced from `core/personas/` (run `npm run sync-skill-personas` after editing the originals).
+The skill is self-contained, its `personas/` directory is synced from `core/personas/` (run `npm run sync-skill-personas` after editing the originals).
 
 ### ClawHub (OpenClaw)
 
@@ -214,7 +238,7 @@ verdict: How they deliver their final verdict (e.g., "letter grade A through F")
 
 # Voice
 
-[Full profile — biographical context, how they think, what they care about,
+[Full profile, biographical context, how they think, what they care about,
 how they talk. The richer this is, the better the persona stays in character.]
 ```
 

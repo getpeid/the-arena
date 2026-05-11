@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# tools/portrait-from-photo.sh — generate an ASCII portrait + text block for a persona.
+# tools/portrait-from-photo.sh, generate an ASCII portrait + text block for a persona.
 #
 # Usage:
 #   ./tools/portrait-from-photo.sh <image> "<NAME>" "<firm/role>" "<signature quote>" [-g <gravity>] [-w <cols>] [-h <rows>]

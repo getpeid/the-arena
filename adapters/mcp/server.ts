@@ -3,7 +3,7 @@
  * the-arena MCP server.
  *
  * Exposes pitch / panel / list_personas / show_persona as MCP tools.
- * Inference happens in the host (Claude Desktop, Cursor, Claude Code, etc.) —
+ * Inference happens in the host (Claude Desktop, Cursor, Claude Code, etc.),
  * this server only provides persona profiles + orchestration prompts. The host's
  * own session pays for tokens; no API key needed here.
  *
@@ -52,7 +52,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "show_persona",
       description:
-        "Return the full profile of a single persona — voice, background, how they evaluate, how they close.",
+        "Return the full profile of a single persona, voice, background, how they evaluate, how they close.",
       inputSchema: {
         type: "object",
         properties: {
@@ -68,7 +68,7 @@ server.setRequestHandler(ListToolsRequestSchema, async () => ({
     {
       name: "pitch",
       description:
-        "Begin a 1-on-1 pitch with a founder persona. Returns the system context for you to play this persona, react to the document, and engage in multi-turn conversation. After this tool returns, continue the conversation as the persona — stay in character, react to the doc, and deliver the verdict in the persona's specified shape when the user asks.",
+        "Begin a 1-on-1 pitch with a founder persona. Returns the system context for you to play this persona, react to the document, and engage in multi-turn conversation. After this tool returns, continue the conversation as the persona, stay in character, react to the doc, and deliver the verdict in the persona's specified shape when the user asks.",
       inputSchema: {
         type: "object",
         properties: {
@@ -128,7 +128,7 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
       case "list_personas": {
         const personas = await listPersonas();
         const lines = personas
-          .map((p) => `- **${p.slug}** — ${p.name}: ${p.short}`)
+          .map((p) => `- **${p.slug}**, ${p.name}: ${p.short}`)
           .join("\n");
         return {
           content: [
@@ -189,7 +189,7 @@ server.setRequestHandler(CallToolRequestSchema, async (req) => {
               text:
                 `${system}\n\n---\n\n` +
                 `Produce the full panel transcript as your next response, following the format and orchestration rules above. ` +
-                `Each persona stays in their own voice and verdict shape — do not homogenize.`,
+                `Each persona stays in their own voice and verdict shape, do not homogenize.`,
             },
           ],
         };

@@ -19,10 +19,10 @@ export class CodexRunner implements Runner {
       throw new Error("CodexRunner expects the last message to be from the user.");
     }
     if (opts.hostSessionId) {
-      // Continuing a session — system context already injected on turn 1.
+      // Continuing a session, system context already injected on turn 1.
       return last.content;
     }
-    // First turn — inject the system prompt as a preamble.
+    // First turn, inject the system prompt as a preamble.
     return `${opts.system}\n\n---\n\n${last.content}`;
   }
 

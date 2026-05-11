@@ -1,5 +1,5 @@
 /**
- * UI helpers for the CLI surface — theatrical banner style.
+ * UI helpers for the CLI surface, theatrical banner style.
  * All chrome respects no-TTY pipes (drops ANSI codes when not interactive).
  */
 
@@ -48,8 +48,8 @@ export interface SessionHeader {
 }
 
 function shortFromShort(short: string): string {
-  // First clause before em-dash or first hyphen-dash, e.g. "Sequoia partner — markets-first…" → "Sequoia partner"
-  const m = short.split(/\s+[—–-]\s+/)[0];
+  // First clause before em-dash or first hyphen-dash, e.g. "Sequoia partner, markets-first…" → "Sequoia partner"
+  const m = short.split(/\s+[, –-]\s+/)[0];
   return m.trim();
 }
 
@@ -106,11 +106,11 @@ export function entrance(
   action = "enters the room",
 ): void {
   if (portrait) {
-    // Portrait card is self-announcing — name lives inside the box.
+    // Portrait card is self-announcing, name lives inside the box.
     for (const line of portrait.split("\n")) console.log(line);
     console.log("");
   } else {
-    // No portrait — fall back to a theatrical rule.
+    // No portrait, fall back to a theatrical rule.
     const rule = ui.dim("━━━");
     console.log(`  ${rule} ${ui.bold(personaName)} ${ui.dim(action)} ${rule}\n`);
   }

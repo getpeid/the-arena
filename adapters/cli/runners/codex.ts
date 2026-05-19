@@ -61,11 +61,16 @@ export class CodexRunner implements Runner {
           if (!t) continue;
           try {
             const event = JSON.parse(t);
-            const sid = event.session_id ?? event.sessionId ?? event?.session?.id;
+            const sid =
+              event.thread_id ??
+              event.session_id ??
+              event.sessionId ??
+              event?.session?.id;
             if (typeof sid === "string") hostSessionId = sid;
             const msg =
               event.message ??
               event?.agent_message?.text ??
+              event?.item?.text ??
               event?.final_message ??
               event?.content;
             if (typeof msg === "string") text = msg;
